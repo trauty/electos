@@ -5,12 +5,12 @@ import Link from "next/link";
 import { Logo } from ".";
 
 
-export const NavBar = () => {
+export function NavBar () {
     return (
         <div className="fixed w-[100%] bg-electos-black-950">
             <div className="flex w-[80%] justify-between m-auto py-5">
                 <div>
-                    <Link href="">
+                    <Link href="/">
                         <Logo width={170} height={36}/>
                     </Link>
                 </div>
@@ -28,7 +28,7 @@ export const NavBar = () => {
                             </li>
                             <div className="ml-8 flex gap-4">
                                 <li>
-                                    <Link href="">Anmelden</Link>
+                                    <Link href="/auth/signin">Anmelden</Link>
                                 </li>
                                 <li>
                                     <Link href="">Registrieren</Link>
