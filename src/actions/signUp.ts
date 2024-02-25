@@ -2,7 +2,7 @@ import { userSchema } from "@/types";
 import { ZodError } from "zod";
 
 
-export async function signUp(prevState : string | undefined, formData: FormData) {
+export async function signUp(formData: FormData) {
     try {
         userSchema.parse(Object.fromEntries(formData.entries()));
 
@@ -12,10 +12,13 @@ export async function signUp(prevState : string | undefined, formData: FormData)
         });
 
         if (res.status === 403) {
-            return "Ein Konto mit dieser E-Mail-Adresse existiert schon."
+            return "Ein Konto mit dieser E-Mail-Adresse existiert bereits."
         } else if (!res.ok) {
             return "Überprüfen Sie ihre Angaben."
         }
+
+        return "Konto erfolgreich erstellt."
+
     } catch (err) {
         if (err instanceof ZodError) {
             return "Überprüfen Sie ihre Angaben."

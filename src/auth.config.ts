@@ -2,7 +2,7 @@ import type { NextAuthConfig } from "next-auth";
 
 export const authConfig = {
     pages: {
-        signIn: "/signin"
+        signIn: "/auth/signin"
     },
     callbacks: {
         authorized({ auth, request: {nextUrl} }) {
@@ -17,6 +17,12 @@ export const authConfig = {
             }
             return true;
         },
+        session({session, token}) {
+            
+            console.log(token);
+
+            return session;
+        }
     },
     providers: [],
 } satisfies NextAuthConfig;

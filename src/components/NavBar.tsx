@@ -21,7 +21,7 @@ export function NavBar() {
                 </div>
                 <div className="">
                     <nav className="h-full">
-                        <div className="hidden lg:contents">
+                        <div className="hidden xl:contents">
                             <ul className="h-full flex gap-6 justify-center items-center text-electos-white">
                                 <li>
                                     <Link href="" className="gradient-underline font-semibold">Passive Komp.</Link>
@@ -48,7 +48,7 @@ export function NavBar() {
                                 </div>
                             </ul>
                         </div>
-                        <div className="lg:hidden h-full flex items-center justify-center">
+                        <div className="xl:hidden h-full flex items-center justify-center">
                             <button
                                 className="flex flex-col justify-center items-center"
                                 onClick={() => setMenu(!menuOpen)}>
@@ -64,7 +64,7 @@ export function NavBar() {
                             </button>
                         </div>
                         <div>
-                            <ul className={clsx("lg:hidden transition-all duration-300 ease-in-out absolute right-0 p-4 ",
+                            <ul className={clsx("xl:hidden transition-all duration-300 ease-in-out absolute right-0 p-4 ",
                                 "bg-electos-black-950 h-screen text-white",
                                 menuOpen ? "opacity-100 -translate-x-0" : "opacity-0 translate-x-16")}
                                 style={{ visibility: menuOpen ? "visible" : "hidden" }}>

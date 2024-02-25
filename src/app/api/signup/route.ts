@@ -11,8 +11,8 @@ export async function POST(req: NextRequest) {
     const user = Object.fromEntries(newUser.entries());
 
     try {
-        const [rows] = await conn.query('INSERT INTO Users SET ?', user);
-        return NextResponse.json({ message: rows }, {status: 201 });
+        await conn.query('INSERT INTO Users SET ?', user);
+        return NextResponse.json({ message: "Konto erstellt." }, {status: 201 });
     } catch (err) {
         const sqlError = err as any;
         if (sqlError.code == "ER_DUP_ENTRY") {
