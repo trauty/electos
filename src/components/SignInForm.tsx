@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export function SignInForm() {
     return (
-        <form action="" className="flex flex-col items-center justify-center gap-1 w-1/4 min-w-80 bg-electos-black-900 
+        <form action="" className="flex flex-col items-center justify-center gap-1 w-1/4 min-w-96 bg-electos-black-900 
             px-8 py-4 text-white rounded-md shadow-2xl">
             <h1 className="font-bold text-xl my-1">Anmelden</h1>
             <label htmlFor="email" className="self-start font-semibold">E-Mail</label> <br />
@@ -17,7 +17,7 @@ export function SignInForm() {
                 className="bg-electos-black-950 border-2 border-electos-black-900 rounded-md px-2 py-1 outline-electos-green-600 focus:outline-none
             focus:ring-0 focus:border-electos-green-600 w-full"/> <br />
             <span className="">Sie haben kein Konto?
-            <Link href="/auth/signup" className="ml-1 gradient-underline">
+            <Link href="/auth/signup" className="ml-1 gradient-underline font-semibold">
                 Registrieren
             </Link>
             </span>

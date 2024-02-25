@@ -2,10 +2,9 @@ import NextAuth from "next-auth";
 import { authConfig } from "./auth.config";
 import Credentials from "next-auth/providers/credentials";
 import { z } from "zod";
-import { User } from "./types";
 
-async function getUser(email: string): Promise<User | undefined> {
-
+async function getUser(email: string) {
+    return null;
 }
 
 export const { auth, signIn, signOut, handlers: {GET, POST} } = NextAuth({

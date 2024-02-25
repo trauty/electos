@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  electos_db:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: electos
+      MYSQL_USER: trauty
+      MYSQL_PASSWORD: 123456
+    restart: always
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    networks:
+      - electos-network
+networks:
+  electos-network:
