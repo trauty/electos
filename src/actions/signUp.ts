@@ -6,7 +6,7 @@ export async function signUp(formData: FormData) {
     try {
         userSchema.parse(Object.fromEntries(formData.entries()));
 
-        const res = await fetch("/api/signup", {
+        const res = await fetch("/api/auth/signup", {
            method: "POST",
            body: formData
         });
