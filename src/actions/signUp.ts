@@ -2,7 +2,7 @@ import { userSchema } from "@/types";
 import { ZodError } from "zod";
 
 
-export async function signUp(formData: FormData) {
+export async function signup(formData: FormData) {
     try {
         userSchema.parse(Object.fromEntries(formData.entries()));
 

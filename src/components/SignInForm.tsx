@@ -1,12 +1,12 @@
 "use client";
 
-import { authenticate } from "@/actions";
 import Link from "next/link";
 import { useFormState, useFormStatus } from "react-dom";
 import { LoadingIcon } from "@/components";
+import { signin } from "@/actions/session";
 
 export function SignInForm() {
-    const [error, dispatch] = useFormState(authenticate, undefined);
+    const [error, dispatch] = useFormState(signin, undefined);
 
     return (
         <form action={dispatch} className="flex flex-col items-center justify-center gap-1 w-1/4 min-w-96 bg-electos-black-900 

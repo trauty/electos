@@ -1,6 +1,5 @@
 "use client";
 
-import { signUp } from "@/actions";
 import Link from "next/link";
 import { useFormState, useFormStatus } from "react-dom";
 import { LoadingIcon } from "./LoadingIcon";
@@ -8,13 +7,14 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
+import { signup } from "@/actions/signup";
 
 export function SignUpForm() {
     const [error, dispatch] = useFormState(sendSignUpForm, undefined);
     const [showModal, setShowModal] = useState(false);
 
     async function sendSignUpForm(prevState : string | undefined, formData: FormData) {
-        const res = await signUp(formData);
+        const res = await signup(formData);
 
         if (res == "Konto erfolgreich erstellt.") {
             setShowModal(true);
