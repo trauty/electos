@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useFormState, useFormStatus } from "react-dom";
 import { LoadingIcon } from "@/components";
 import { signin } from "@/actions/session";
+import clsx from "clsx";
 
 export function SignInForm() {
     const [error, dispatch] = useFormState(signin, undefined);
@@ -36,15 +37,14 @@ export function SignInForm() {
 
 function LoginButton() {
     const state = useFormStatus();
-   
+
     return (
         <>
-            {state.pending ?
-                <LoadingIcon width={40} height={40} className="py-2" />
-                :
-                <input type="submit" value="Anmelden" className="cursor-pointer my-2 bg-electos-green-500 py-2 px-4 
-                rounded-md hover:bg-electos-green-600 transition-all duration-200 ease-in-out font-medium" />
-            }
+            <LoadingIcon width={44} height={44} className={clsx("py-2", state.pending ? "visible" : "hidden")} />
+            <input type="submit" value="Anmelden" className={clsx("cursor-pointer my-2 bg-electos-green-500 py-2 px-4", 
+                "rounded-md hover:bg-electos-green-600 transition-all duration-200 ease-in-out font-medium",
+                state.pending ? "hidden" : "visible")} 
+            />
         </>
     );
 }

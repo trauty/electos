@@ -1,6 +1,6 @@
 import mysql from "mysql2/promise"
 
-export const conn = mysql.createPool({
+export const pool = mysql.createPool({
     host: "localhost",
     port: 3306,
     user: process.env.DB_USER,

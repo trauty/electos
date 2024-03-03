@@ -41,51 +41,51 @@ export function SignUpForm() {
                         className="bg-electos-black-950 border-2 border-electos-black-900 rounded-md px-2 py-1 outline-electos-green-600 focus:outline-none
                 focus:ring-0 focus:border-electos-green-600 w-full"/> <br />
 
-                    <label htmlFor="firstName" className="self-start font-semibold">Vorname</label> <br />
-                    <input name="firstName" id="firstName"
+                    <label className="self-start font-semibold">Vorname</label> <br />
+                    <input name="first_name"
                         className="bg-electos-black-950 border-2 border-electos-black-900 rounded-md px-2 py-1 outline-electos-green-600 focus:outline-none
                 focus:ring-0 focus:border-electos-green-600 w-full"/> <br />
 
-                    <label htmlFor="lastName" className="self-start font-semibold">Nachname</label> <br />
-                    <input name="lastName" id="lastName"
+                    <label className="self-start font-semibold">Nachname</label> <br />
+                    <input name="last_name"
                         className="bg-electos-black-950 border-2 border-electos-black-900 rounded-md px-2 py-1 outline-electos-green-600 focus:outline-none
                 focus:ring-0 focus:border-electos-green-600 w-full"/> <br />
 
-                    <label htmlFor="street" className="self-start font-semibold">Straße</label> <br />
+                    <label className="self-start font-semibold">Straße</label> <br />
                     <input name="street" id="street"
                         className="bg-electos-black-950 border-2 border-electos-black-900 rounded-md px-2 py-1 outline-electos-green-600 focus:outline-none
                 focus:ring-0 focus:border-electos-green-600 w-full"/> <br />
                 </div>
 
                 <div>
-                    <label htmlFor="plz" className="self-start font-semibold">PLZ</label> <br />
-                    <input name="plz" id="plz"
+                    <label className="self-start font-semibold">PLZ</label> <br />
+                    <input name="plz"
                         className="bg-electos-black-950 border-2 border-electos-black-900 rounded-md px-2 py-1 outline-electos-green-600 focus:outline-none
                 focus:ring-0 focus:border-electos-green-600 w-full"/> <br />
 
-                    <label htmlFor="location" className="self-start font-semibold">Ort</label> <br />
+                    <label className="self-start font-semibold">Ort</label> <br />
                     <input type="location" min={0} name="location" id="location"
                         className="bg-electos-black-950 border-2 border-electos-black-900 rounded-md px-2 py-1 outline-electos-green-600 focus:outline-none
                 focus:ring-0 focus:border-electos-green-600 w-full"/> <br />
 
-                    <label htmlFor="iban" className="self-start font-semibold">IBAN</label> <br />
-                    <input name="iban" id="iban"
+                    <label className="self-start font-semibold">IBAN</label> <br />
+                    <input name="iban"
                         className="bg-electos-black-950 border-2 border-electos-black-900 rounded-md px-2 py-1 outline-electos-green-600 focus:outline-none
                 focus:ring-0 focus:border-electos-green-600 w-full"/> <br />
 
-                    <label htmlFor="blz" className="self-start font-semibold">BLZ</label> <br />
-                    <input name="blz" id="blz"
+                    <label className="self-start font-semibold">BLZ</label> <br />
+                    <input name="blz"
                         className="bg-electos-black-950 border-2 border-electos-black-900 rounded-md px-2 py-1 outline-electos-green-600 focus:outline-none
                 focus:ring-0 focus:border-electos-green-600 w-full"/> <br />
 
-                    <label htmlFor="institution" className="self-start font-semibold">Institut</label> <br />
-                    <input name="institution" id="institution"
+                    <label className="self-start font-semibold">Institut</label> <br />
+                    <input name="institution"
                         className="bg-electos-black-950 border-2 border-electos-black-900 rounded-md px-2 py-1 outline-electos-green-600 focus:outline-none
                 focus:ring-0 focus:border-electos-green-600 w-full"/> <br />
                 </div>
             </div>
             <span className="">Sie haben ein Konto?
-                <Link href="/auth/signin" className="ml-1 gradient-underline">
+                <Link href="/auth/signin" className="ml-1 gradient-underline font-semibold">
                     Anmelden
                 </Link>
             </span>
@@ -102,12 +102,11 @@ function SignUpButton() {
    
     return (
         <>
-            {state.pending ?
-                <LoadingIcon width={40} height={40} className="py-2" />
-                :
-                <input type="submit" value="Bestätigen" className="cursor-pointer my-2 bg-electos-green-500 py-2 px-4 
-                rounded-md hover:bg-electos-green-600 transition-all duration-200 ease-in-out font-medium" />
-            }
+            <LoadingIcon width={44} height={44} className={clsx("py-2", state.pending ? "visible" : "hidden")} />
+            <input type="submit" value="Registrieren" className={clsx("cursor-pointer my-2 bg-electos-green-500 py-2 px-4", 
+                "rounded-md hover:bg-electos-green-600 transition-all duration-200 ease-in-out font-medium",
+                state.pending ? "hidden" : "visible")} 
+            />
         </>
     );
 }

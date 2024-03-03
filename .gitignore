@@ -9,6 +9,9 @@
 # testing
 /coverage
 
+db_data/*
+!db_data/electos
+
 # next.js
 /.next/
 /out/

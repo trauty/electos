@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { conn } from "@/db.config";
+import { pool } from "@/db";
 import * as argon2 from "argon2";
 
 export async function POST(req: NextRequest) {
@@ -11,7 +11,9 @@ export async function POST(req: NextRequest) {
     const user = Object.fromEntries(newUser.entries());
 
     try {
-        await conn.query('INSERT INTO Users SET ?', user);
+        const conn = await pool.getConnection();
+        await conn.query('INSERT INTO account SET ?', user);
+        conn.release();
         return NextResponse.json({ message: "Konto erstellt." }, {status: 201 });
     } catch (err) {
         const sqlError = err as any;

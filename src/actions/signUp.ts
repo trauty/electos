@@ -21,6 +21,7 @@ export async function signup(formData: FormData) {
 
     } catch (err) {
         if (err instanceof ZodError) {
+            console.log(err)
             return "Überprüfen Sie ihre Angaben."
         }
         return "Serverfehler beim Registrieren.";

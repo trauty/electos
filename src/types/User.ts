@@ -3,8 +3,8 @@ import { z } from "zod"
 export const userSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
-  firstName: z.string().min(1),
-  lastName: z.string().min(1),
+  first_name: z.string().min(1),
+  last_name: z.string().min(1),
   street: z.string().min(1),
   plz: z.string().max(10).min(1),
   location: z.string().min(1),

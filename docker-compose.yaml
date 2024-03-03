@@ -14,5 +14,7 @@ services:
       - '3306'
     networks:
       - electos-network
+    volumes:
+      - ./db_data:/var/lib/mysql
 networks:
   electos-network:

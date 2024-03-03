@@ -11,8 +11,8 @@ export interface SessionData {
     iban: string;
     blz: string;
     institution: string;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
     isLoggedIn: boolean;
 };
 
@@ -27,8 +27,8 @@ export const defaultSession: SessionData = {
     iban: "",
     blz: "",
     institution: "",
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    createdAt: "",
+    updatedAt: "",
     isLoggedIn: false
 };
 

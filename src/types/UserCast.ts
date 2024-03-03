@@ -9,6 +9,6 @@ export interface UserCast {
     iban: string;
     blz: string;
     institution: string;
-    createdAt: Date;
-    updatedAt: Date;
+    created_at: string;
+    updated_at: string;
 };

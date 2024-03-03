@@ -1,6 +1,6 @@
 "use server";
 
-import { conn } from "@/db.config";
+import { pool } from "@/db";
 import { SessionData, defaultSession, sessionOptions } from "@/session-lib";
 import { UserCast } from "@/types";
 import { getIronSession } from "iron-session";
@@ -31,8 +31,9 @@ export async function getSession(dbQuery = true) {
 
     if (dbQuery) {
         try {
-            const [rows] = await conn.query(`SELECT * FROM Users WHERE 'email' = ?;`, session.email);
-
+            const conn = await pool.getConnection();
+            const [rows] = await conn.query(`SELECT * FROM account WHERE email = ?;`, session.email);
+            conn.release();
             if (rows instanceof Array && rows.length == 0) {
                 return session;
             }
@@ -51,8 +52,8 @@ export async function getSession(dbQuery = true) {
             session.iban = user.iban;
             session.blz = user.blz;
             session.institution = user.institution;
-            session.createdAt = user.createdAt;
-            session.updatedAt = user.updatedAt;
+            session.createdAt = user.created_at;
+            session.updatedAt = user.updated_at;
             session.isLoggedIn = true;
 
         } catch (err) {
@@ -76,8 +77,14 @@ export async function signin(prevState: string | undefined, formData: FormData) 
     "use server";
 
     try {
-        
-        const [rows] = await conn.query(`SELECT password FROM Users WHERE email = ?;`, [formData.get("email")!]);
+        if (!formData.get("email") || !formData.get("password"))
+        {
+            return "Überprüfen Sie ihre Angaben.";
+        }
+
+        const conn = await pool.getConnection();
+        const [rows] = await conn.query(`SELECT password FROM account WHERE email = ?;`, [formData.get("email")!]);
+        conn.release();
 
         if (rows instanceof Array && rows.length == 0) {
             return "Kein Konto mit dieser Kombination gefunden.";
