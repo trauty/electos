@@ -16,7 +16,7 @@ export function NavBarComponent({ isLoggedIn }: NavBarProps) {
     const [menuOpen, setMenu] = useState(false);
 
     return (
-        <div className="fixed w-[100%] bg-electos-black-950">
+        <div className="fixed w-[100%] bg-electos-black-950 z-50">
             <div className="flex w-[85%] justify-between m-auto py-3">
                 <div>
                     <Link href="/">
@@ -95,7 +95,7 @@ export function NavBarComponent({ isLoggedIn }: NavBarProps) {
                                 {isLoggedIn ?
                                     <li className="h-fit w-fit flex flex-col mt-4 gap-2">
                                         <Link href="/dashboard" className="gradient-underline font-semibold w-fit">Dashboard</Link>
-                                        <Link href="/shopping-cart" className="gradient-underline font-semibold w-fit">Warenkorb</Link>
+                                        <Link href="/cart" className="gradient-underline font-semibold w-fit">Warenkorb</Link>
                                         <button className="text-center font-semibold px-4 py-1 border-2 rounded-md 
                                             focus:ring-1 ring-electos-green-400 transition-all duration-200 ease-in-out
                                             hover:bg-electos-green-500 mt-2"

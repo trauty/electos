@@ -1,8 +1,8 @@
 export interface UserCast {
-    id: string;
+    account_id: string;
     email: string;
-    firstName: string;
-    lastName: string;
+    first_name: string;
+    last_name: string;
     street: string;
     plz: string;
     location: string;

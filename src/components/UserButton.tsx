@@ -28,7 +28,8 @@ export function UserButton() {
             >
                 <div>
                     <Link href="/dashboard" className="w-full block text-center px-4 py-2 text-sm hover:bg-electos-black-900" role="menuitem" tabIndex={-1} id="menu-item-0">Konto</Link>
-                    <button className="w-full block px-4 py-2 text-sm hover:bg-electos-black-900" role="menuitem" tabIndex={-1} id="menu-item-2"
+                    <Link href="/cart" className="w-full block text-center px-4 py-2 text-sm hover:bg-electos-black-900" role="menuitem" tabIndex={0} id="menu-item-1">Warenkorb</Link>
+                    <button className="w-full block px-4 py-2 text-sm hover:bg-electos-black-900" role="menuitem" tabIndex={1} id="menu-item-2"
                         onClick={async () => {
                             await signout();
                         }}>

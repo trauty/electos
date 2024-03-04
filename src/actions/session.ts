@@ -42,10 +42,10 @@ export async function getSession(dbQuery = true) {
 
             const user = userArray.at(0)!;
 
-            session.id = user.id;
+            session.id = user.account_id;
             session.email = user.email;
-            session.firstName = user.firstName;
-            session.lastName = user.lastName;
+            session.firstName = user.first_name;
+            session.lastName = user.last_name;
             session.street = user.street;
             session.plz = user.plz;
             session.location = user.location;

@@ -8,6 +8,7 @@ export async function GET(req: NextRequest) {
         const conn = await pool.getConnection();
         const [rows] = await conn.query(`
         SELECT
+            p.product_id as product_id,
             p.name AS product_name,
             p.description AS product_description,
             p.price AS product_price,
