@@ -6,4 +6,5 @@ export * from "./LoadingIcon";
 export * from "./NavBar";
 export * from "./UserButton";
 export * from "./CategoryButton";
-export * from "./ProductCard"
+export * from "./ProductCard";
+export * from "./CartItem";

@@ -5,7 +5,7 @@ import { pool } from "@/db";
 import { getSession } from "./session";
 
 
-export async function addToCart(productId: number, count: number) {
+export async function updateCart(productId: number, count: number) {
     const session = await getSession();
 
     if (!session.isLoggedIn) {
@@ -14,7 +14,7 @@ export async function addToCart(productId: number, count: number) {
 
     try {
         const conn = await pool.getConnection();
-        await conn.query("INSERT INTO products_in_cart VALUES(?, ?, ?) ON DUPLICATE KEY UPDATE amount = amount + VALUES(amount);", [productId, session.id, count]);
+        await conn.query("UPDATE products_in_cart SET amount = ? WHERE fk_product_id = ?;", [count, productId]);
         conn.release();
         return true;
     } catch (err) {

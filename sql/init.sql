@@ -14,12 +14,6 @@ CREATE TABLE account (
     updated_at DATETIME DEFAULT NOW() ON UPDATE NOW()
 );
 
-CREATE TABLE cart (
-    cart_id INT AUTO_INCREMENT PRIMARY KEY,
-    fk_account_id INT,
-    FOREIGN KEY (fk_account_id) REFERENCES account(account_id)
-);
-
 CREATE TABLE receipt (
     receipt_id INT AUTO_INCREMENT PRIMARY KEY,
     created_at DATETIME DEFAULT NOW()
@@ -50,12 +44,12 @@ CREATE TABLE product (
 );
 
 CREATE TABLE products_in_cart (
-    PRIMARY KEY (fk_product_id, fk_cart_id),
-    CONSTRAINT unique_cart_product UNIQUE (fk_product_id, fk_cart_id),
+    PRIMARY KEY (fk_product_id, fk_account_id),
+    CONSTRAINT unique_account_product UNIQUE (fk_product_id, fk_account_id),
     fk_product_id INT,
-    fk_cart_id INT,
+    fk_account_id INT,
     FOREIGN KEY (fk_product_id) REFERENCES product(product_id) ON DELETE CASCADE,
-    FOREIGN KEY (fk_cart_id) REFERENCES cart(cart_id) ON DELETE CASCADE,
+    FOREIGN KEY (fk_account_id) REFERENCES account(account_id) ON DELETE CASCADE,
     amount INT NOT NULL
 );
 
