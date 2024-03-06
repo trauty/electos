@@ -8,20 +8,23 @@ import { useEffect, useState } from "react";
 interface CartItemProps {
     item: ICartItem;
     deleteItem: (productId: string) => void;
+    updateSum: () => void;
 };
 
-export function CartItem({ item, deleteItem }: CartItemProps) {
+export function CartItem({ item, deleteItem, updateSum }: CartItemProps) {
     const [crtAmount, setAmount] = useState(parseInt(item.amount));
 
     useEffect(() => {
         async function updateItem() {
             if (parseInt(item.amount) != crtAmount) {
+                item.amount = String(crtAmount);
                 await updateCart(parseInt(item.product_id), crtAmount);
+                updateSum();
             }
         }
 
         updateItem();
-    }, [crtAmount, item.amount, item.product_id]);
+    }, [crtAmount, item.amount, item.product_id, updateSum, item]);
 
     return (
         <div className="w-full h-full bg-electos-white text-electos-black-950 rounded-md flex flex-row gap-4 items-center">
@@ -36,7 +39,7 @@ export function CartItem({ item, deleteItem }: CartItemProps) {
                 <span className="hidden sm:contents">Preis:</span> {item.price + "€"}
             </div>
             <div className="hidden sm:block">
-                Summe: {(crtAmount * parseFloat(item.price)).toFixed(2)} €
+                Summe: {(crtAmount * parseFloat(item.price)).toFixed(2)}€
             </div>
             <div className="ml-auto mr-2 flex flex-row gap-4 w-max justify-center items-center">
                 <button className="text-electos-green-500 -translate-y-1 text-2xl" onClick={() => setAmount(crtAmount + 1)}>+</button>

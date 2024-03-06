@@ -30,8 +30,8 @@ export async function getSession(dbQuery = true) {
     }
 
     if (dbQuery) {
+        const conn = await pool.getConnection();
         try {
-            const conn = await pool.getConnection();
             const [rows] = await conn.query(`SELECT * FROM account WHERE email = ?;`, session.email);
             conn.release();
             if (rows instanceof Array && rows.length == 0) {
@@ -57,6 +57,7 @@ export async function getSession(dbQuery = true) {
             session.isLoggedIn = true;
 
         } catch (err) {
+            conn.release();
             return session;
         }
     }
@@ -76,13 +77,13 @@ export async function signout() {
 export async function signin(prevState: string | undefined, formData: FormData) {
     "use server";
 
+    const conn = await pool.getConnection();
     try {
         if (!formData.get("email") || !formData.get("password"))
         {
             return "Überprüfen Sie ihre Angaben.";
         }
 
-        const conn = await pool.getConnection();
         const [rows] = await conn.query(`SELECT password FROM account WHERE email = ?;`, [formData.get("email")!]);
         conn.release();
 
@@ -104,7 +105,7 @@ export async function signin(prevState: string | undefined, formData: FormData) 
         }
 
     } catch (err) {
-        console.log(err)
+        conn.release();
         return "Kein Konto mit dieser Kombination gefunden.";
     }
 

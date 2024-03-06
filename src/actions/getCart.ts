@@ -12,8 +12,8 @@ export async function getCart() {
         redirect("/auth/signin");
     }
 
+    const conn = await pool.getConnection();
     try {
-        const conn = await pool.getConnection();
         const [cart] = await conn.query<ICartItem[]>(`
         SELECT p.product_id, p.name, p.description, p.price, p.image, pic.amount
         FROM products_in_cart pic
@@ -23,6 +23,7 @@ export async function getCart() {
 
         return cart;
     } catch (err) {
-        console.log(err)
+        conn.release();
+        return null;
     }
 }

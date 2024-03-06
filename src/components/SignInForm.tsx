@@ -40,7 +40,7 @@ function LoginButton() {
 
     return (
         <>
-            <LoadingIcon width={44} height={44} className={clsx("py-2", state.pending ? "visible" : "hidden")} />
+            <LoadingIcon className={clsx("py-2 fill-electos-white w-[3.75rem] h-[3.75rem]", state.pending ? "visible" : "hidden")} />
             <input type="submit" value="Anmelden" className={clsx("cursor-pointer my-2 bg-electos-green-500 py-2 px-4", 
                 "rounded-md hover:bg-electos-green-600 transition-all duration-200 ease-in-out font-medium",
                 state.pending ? "hidden" : "visible")} 

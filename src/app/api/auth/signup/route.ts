@@ -9,13 +9,13 @@ export async function POST(req: NextRequest) {
     newUser.set("password", hashedPassword);
 
     const user = Object.fromEntries(newUser.entries());
-
+    const conn = await pool.getConnection();
     try {
-        const conn = await pool.getConnection();
         await conn.query("INSERT INTO account SET ?;", user);
         conn.release();
         return NextResponse.json({ message: "Konto erstellt." }, { status: 201 });
     } catch (err) {
+        conn.release();
         const sqlError = err as any;
         if (sqlError.code == "ER_DUP_ENTRY") {
             return NextResponse.json({ message: "Ein Konto unter dieser E-Mail-Adresse existiert bereits." }, { status: 403 });

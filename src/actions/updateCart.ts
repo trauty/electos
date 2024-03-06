@@ -12,12 +12,13 @@ export async function updateCart(productId: number, count: number) {
         redirect("/auth/signin");
     }
 
+    const conn = await pool.getConnection();
     try {
-        const conn = await pool.getConnection();
         await conn.query("UPDATE products_in_cart SET amount = ? WHERE fk_product_id = ?;", [count, productId]);
         conn.release();
         return true;
     } catch (err) {
+        conn.release();
         return false;
     }
 }

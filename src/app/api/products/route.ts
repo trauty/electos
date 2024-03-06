@@ -4,8 +4,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
     const qParams = req.nextUrl.searchParams.get("catId") as string;
+    const conn = await pool.getConnection();
     try {
-        const conn = await pool.getConnection();
         const [rows] = await conn.query(`
         SELECT
             p.product_id as product_id,
@@ -26,6 +26,7 @@ export async function GET(req: NextRequest) {
 
         return NextResponse.json({ products: rows });
     } catch (err) {
+        conn.release();
         return NextResponse.json({ error: err });
     }
 }

@@ -12,12 +12,13 @@ export async function addToCart(productId: number, count: number) {
         redirect("/auth/signin");
     }
 
+    const conn = await pool.getConnection();
     try {
-        const conn = await pool.getConnection();
         await conn.query("INSERT INTO products_in_cart VALUES(?, ?, ?) ON DUPLICATE KEY UPDATE amount = amount + VALUES(amount);", [productId, session.id, count]);
         conn.release();
         return true;
     } catch (err) {
+        conn.release();
         return false;
     }
 }

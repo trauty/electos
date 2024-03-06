@@ -16,6 +16,8 @@ CREATE TABLE account (
 
 CREATE TABLE receipt (
     receipt_id INT AUTO_INCREMENT PRIMARY KEY,
+    fk_account_id INT,
+    FOREIGN KEY (fk_account_id) REFERENCES account(account_id),
     created_at DATETIME DEFAULT NOW()
 );
 
